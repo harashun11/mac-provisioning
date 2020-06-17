@@ -1,6 +1,6 @@
-# os-x setup
+# mac setup
 
-## via make
+## make
 
 ### dotfiles
 
@@ -38,12 +38,4 @@ install specific version of golang
 
 ```
 goenv install 1.9.2
-```
-
-### terraform
-
-install version 0.8.4 of terraform
-
-```
-tfenv install 0.8.4
 ```
