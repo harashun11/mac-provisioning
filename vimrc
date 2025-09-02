@@ -29,7 +29,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " tool like pe
 Plug 'junegunn/fzf.vim' "
 Plug 'ConradIrwin/vim-bracketed-paste' " automatic :set paste
 " Plug 'SirVer/ultisnips' " snippet
-Plug 'Raimondi/delimitMate' " auto-completion for quotes, parens, brackets, etc.
+" Plug 'Raimondi/delimitMate' " auto-completion for quotes, parens, brackets, etc.
 Plug 'mileszs/ack.vim' " search tool integrate with ag
 Plug 'scrooloose/nerdtree' " tree tool
 Plug 'lambdalisue/vim-gista' " gist
@@ -39,7 +39,7 @@ call plug#end()
 " ////////////
 " SETTINGS
 " ////////////
- 
+
 set nocompatible " disable vi compatible, but we dont need in vimrc
 set noerrorbells " No beeps
 filetype off
@@ -56,7 +56,7 @@ set background=dark
 let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
- 
+
 if !has('nvim')
   set ttymouse=xterm2
   set ttyscroll=3
@@ -67,7 +67,7 @@ set ttyfast
 set laststatus=2 " always show statusline
 set encoding=utf-8 " set default encoding to UTF-8
 set autoread " automatically reread changed files without asking me anything
-set autoindent                  
+set autoindent
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch " shows the match while typing
 set hlsearch " highlight found searches
@@ -83,7 +83,7 @@ set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set noshowmatch " do not show matching brackets by flickering
 set noshowmode " show the mode with airline or lightline
 set ignorecase " ignore case in search
-set smartcase  " ... but not it begins with upper case 
+set smartcase  " ... but not it begins with upper case
 set completeopt=menu,menuone " show completion in pop-up menu
 set nocursorcolumn " no highlight in column
 set nocursorline " no highlight in line
@@ -91,10 +91,10 @@ set updatetime=300 " swap file will be written to disk
 set pumheight=10 " completion window max size
 set conceallevel=2 " Concealed text is completely hidden
 set lazyredraw
- 
+
 " " ~/.viminfo needs to be writable and readable
 " set viminfo='200
-" 
+"
 if has('persistent_undo')
   set undofile
   set undodir=~/.cache/vim
@@ -102,18 +102,18 @@ endif
 
 " ack with ag
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'                                                   
+  let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
- 
+
 augroup filetypedetect
 "   command! -nargs=* -complete=help Help vertical belowright help <args>
 "   autocmd FileType help wincmd L
-"   
+"
    autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
    autocmd BufNewFile,BufRead *.hcl setf conf
-   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
-   
+   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
 "   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
    autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
    autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
@@ -128,7 +128,7 @@ augroup filetypedetect
    autocmd BufNewFile,BufRead *.html setlocal expandtab shiftwidth=2 tabstop=2
    autocmd BufNewFile,BufRead Dockerfile setlocal expandtab shiftwidth=2 tabstop=2
 "   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
-   
+
    autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
    autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 augroup END
@@ -136,18 +136,18 @@ augroup END
 " ////////////
 " STATUSLINE
 " ////////////
- 
+
 let s:modes = {
-      \ 'n': 'NORMAL', 
-      \ 'i': 'INSERT', 
-      \ 'R': 'REPLACE', 
-      \ 'v': 'VISUAL', 
-      \ 'V': 'V-LINE', 
+      \ 'n': 'NORMAL',
+      \ 'i': 'INSERT',
+      \ 'R': 'REPLACE',
+      \ 'v': 'VISUAL',
+      \ 'V': 'V-LINE',
       \ "\<C-v>": 'V-BLOCK',
       \ 'c': 'COMMAND',
-      \ 's': 'SELECT', 
-      \ 'S': 'S-LINE', 
-      \ "\<C-s>": 'S-BLOCK', 
+      \ 's': 'SELECT',
+      \ 'S': 'S-LINE',
+      \ "\<C-s>": 'S-BLOCK',
       \ 't': 'TERMINAL'
       \}
 
@@ -198,7 +198,7 @@ set statusline=
 
 " mode with custom colors
 set statusline+=%#myModeColor#
-set statusline+=%{StatusLineMode()}               
+set statusline+=%{StatusLineMode()}
 set statusline+=%*
 
 " left information bar (after mode)
@@ -227,12 +227,13 @@ set statusline+=\ %*
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
 let mapleader = ","
- 
+
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
 map <C-m> :cp<CR>
 nnoremap <leader>a :cclose<CR>
- 
+inoremap <silent> jj <ESC>
+
 " ////////////
 " vim-go
 " ////////////
@@ -274,10 +275,10 @@ let g:go_highlight_format_strings = 0
 
 let g:go_modifytags_transform = 'camelcase'
 let g:go_fold_enable = []
-" 
+"
 " nmap <C-g> :GoDecls<cr>
 " imap <C-g> <esc>:<C-u>GoDecls<cr>
-" 
+"
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -315,7 +316,7 @@ augroup go
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
- 
+
 
 " ////////////
 " NERDTree
@@ -327,7 +328,7 @@ noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 
- 
+
 " ////////////
 " markdown
 " ////////////
@@ -338,4 +339,3 @@ let g:vim_markdown_fenced_languages = ['go=go', 'viml=vim', 'bash=sh']
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
- 

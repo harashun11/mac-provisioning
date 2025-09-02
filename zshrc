@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -127,9 +129,14 @@ alias ch='curl -D - -s -o /dev/null'
 alias rm='rm -i'
 alias ls='ls -GpF' # Mac OSX specific
 alias ll='ls -alGpF' # Mac OSX specific
+alias sl='ls' # mistake
 #alias hc='hub compare'
 #alias -s go='go run'
 #alias hs='hugo server'
+# gitの現在のブランチのhash
+alias gnh='git rev-parse --short=7 $(git rev-parse --abbrev-ref HEAD) | pbcopy'
+alias gg='git grep'
+alias venv='python3 -m venv'
 
 # ////////////
 # EXPORT
@@ -337,3 +344,63 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH=$PATH:/Users/harashun11/.nodebrew/current/bin
+export PATH="$HOME/.anyenv/bin:$PATH"
+
+eval "$(anyenv init -)"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+eval "$(pyenv init -)"
+
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+# export ANDROID_HOME=${HOME}/Library/Android/sdk
+# export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
+# if [ -d "${ANDROID_HOME}" ]; then
+#   export PATH="${ANDROID_HOME}/bin:$PATH"
+# fi
+# 
+# # Platform-Toolsのパスを通す
+# export ANDROID_TOOL_PATH=${ANDROID_HOME}/platform-tools
+# if [ -d "${ANDROID_TOOL_PATH}" ]; then
+#   export PATH="${ANDROID_TOOL_PATH}:$PATH"
+# fi
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval "$(mise activate zsh)"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/pc234/.dart-cli-completion/zsh-config.zsh ]] && . /Users/pc234/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+
+alias flutter="fvm flutter"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# pnpm
+export PNPM_HOME="/Users/pc234/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH=~/.npm-global/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pc234/Workspace/orange0/emaqi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pc234/Workspace/orange0/emaqi/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/pc234/Workspace/orange0/emaqi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pc234/Workspace/orange0/emaqi/google-cloud-sdk/completion.zsh.inc'; fi
