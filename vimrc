@@ -183,7 +183,7 @@ function! StatusLinePercent()
 endfunction
 
 function! StatusLineLeftInfo()
- let branch = fugitive#head()
+ let branch = FugitiveHead()
  let filename = '' != expand('%:t') ? expand('%:t') : '[No Name]'
  if branch !=# ''
    return printf("%s | %s", branch, filename)
